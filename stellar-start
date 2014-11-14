@@ -1,0 +1,12 @@
+#!/bin/bash
+
+gnome-terminal \
+	--tab --title="gateway" -e "bash -c \"gatewayd/bin/gateway start;
+	if !( pm2 desc 4 ); then
+	    gatewayd/bin/gateway start
+	fi;exec bash\"" \
+	--tab --title="stellar" -e "bash -c \"sleep 2; node stellar-rest/server.js;exec bash\"" \
+	--tab --title="bbridge" -e "bash -c \"sleep 3; node bbridge/bin/www;exec bash\"" 
+
+
+
