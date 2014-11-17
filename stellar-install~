@@ -31,7 +31,10 @@ sudo apt-get -y update
 sudo apt-get -y install nodejs postgresql postgresql-client
 sudo npm install --global pg grunt grunt-cli forever db-migrate jshint
 sudo npm install pm2 -g --unsafe-perm
-npm install --save 
+npm install --save
+sudo psql -U postgres -c "create user gatewayd_user with password 'password'"
+sudo psql -U postgres -c "create database gatewayd_db with owner gatewayd_user encoding='utf8'"
+sudo psql -U postgres -c "create database gatewayd_db_test with owner gatewayd_user encoding='utf8'" 
 cp ../bbridge/Gatewaydfile.js .
    
 
