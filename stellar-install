@@ -5,6 +5,7 @@ echo '---bbridge install'
 git clone git@github.com:s-a-y/bbridge.git
 cd bbridge
 npm i
+cd ..
 
 # stellar-rest install
 echo '---stellar-rest install'
@@ -12,14 +13,14 @@ git clone https://github.com/umbrellab/stellar-rest.git
 cd stellar-rest
 sudo npm i
 cp config-example.json config.json
-
+cd ..
 
 # stellar-monitor install
 echo '---stellar-monitor install'
 git clone git@github.com:s-a-y/stellar-monitor.git
 cd stellar-monitor
 sudo npm i
-
+cd ..
 
 # gatewayd install
 echo '---gatewayd install'
