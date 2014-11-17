@@ -4,7 +4,7 @@
 echo '---bbridge install'
 git clone git@github.com:s-a-y/bbridge.git
 cd bbridge
-npm i
+sudo npm i
 cd ..
 
 # stellar-rest install
@@ -32,7 +32,7 @@ sudo apt-get -y update
 sudo apt-get -y install nodejs postgresql postgresql-client
 sudo npm install --global pg grunt grunt-cli forever db-migrate jshint
 sudo npm install pm2 -g --unsafe-perm
-npm install --save 
+sudo npm install --save 
 cp ../bbridge/Gatewaydfile.js .
    
 
