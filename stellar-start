@@ -14,22 +14,10 @@ fi;
 
 
 #server run
-if (screen); then 
-
-	if !(xdotool -v); then 
-		sudo apt-get install xdotool
-	fi;
-
-	screen
-	node stellar-rest/server.js
-	xdotool key ctrl+a
-	xdotool key ctrl+d
-
-	screen
-	node stellar-rest/server.js
-	xdotool key ctrl+a
-	xdotool key ctrl+d
-	screen -ls
+if !(screen -v); then 
+	screen -dmS stellar node stellar-rest/server.js
+	screen -dmS bbridge node bbridge/bin/www
+	screen -dmS gatewayd gatewayd/bin/gateway start
 fi;
 
 #WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
