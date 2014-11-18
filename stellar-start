@@ -1,6 +1,8 @@
 #!/bin/bash
 
-gnome-terminal \
+#local run
+if (gnome-terminal -h); then 
+  gnome-terminal \
 	--tab --title="gateway" -e "bash -c \"gatewayd/bin/gateway start;
 	if !( pm2 desc 4 ); then
 	    gatewayd/bin/gateway start
@@ -8,5 +10,34 @@ gnome-terminal \
 	--tab --title="stellar" -e "bash -c \"sleep 2; node stellar-rest/server.js;exec bash\"" \
 	--tab --title="bbridge" -e "bash -c \"sleep 3; node bbridge/bin/www;exec bash\"" 
 
+fi;
+
+
+#server run
+if (screen); then 
+
+	if !(xdotool -v); then 
+		sudo apt-get install xdotool
+	fi;
+
+	screen
+	node stellar-rest/server.js
+	xdotool key ctrl+a
+	xdotool key ctrl+d
+
+	screen
+	node stellar-rest/server.js
+	xdotool key ctrl+a
+	xdotool key ctrl+d
+	screen -ls
+fi;
+
+#WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
+
+#xdotool windowfocus $WID
+
+
+#xdotool set_window $WID
+#wmctrl -i -a $WID
 
 
