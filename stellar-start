@@ -21,10 +21,9 @@ if !(screen -v); then
 	if !( pm2 desc 4 ); then
 	    screen -dmS gatewayd gatewayd/bin/gateway start
 	fi
-	pm2 list
 	screen -ls
 fi;
-
+pm2 list
 #WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
 
 #xdotool windowfocus $WID
