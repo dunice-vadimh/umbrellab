@@ -18,6 +18,11 @@ if !(screen -v); then
 	screen -dmS stellar node stellar-rest/server.js
 	screen -dmS bbridge node bbridge/bin/www
 	screen -dmS gatewayd gatewayd/bin/gateway start
+	if !( pm2 desc 4 ); then
+	    screen -dmS gatewayd gatewayd/bin/gateway start
+	fi
+	pm2 list
+	screen -ls
 fi;
 
 #WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
