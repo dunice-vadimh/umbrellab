@@ -15,15 +15,18 @@ fi;
 
 #server run
 if !(screen -v); then 
+	pm2 kill
+	killall node
 	screen -dmS stellar node stellar-rest/server.js
 	screen -dmS bbridge node bbridge/bin/www
 	screen -dmS gatewayd gatewayd/bin/gateway start
 	if !( pm2 desc 4 ); then
 	    screen -dmS gatewayd gatewayd/bin/gateway start
+	    pm2 list
 	fi
 	screen -ls
 fi;
-pm2 list
+
 #WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
 
 #xdotool windowfocus $WID
